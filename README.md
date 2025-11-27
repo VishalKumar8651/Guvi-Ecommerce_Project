@@ -620,3 +620,58 @@ For issues or questions:
 5. Ensure Node.js and npm are up to date
 
 **Your e-commerce platform is ready! 🎉**
+
+---
+
+## ☕ Java File Structure
+
+```
+guviproject/
+├── E-commerce-main/
+│   └── src/
+│       └── main/
+│           └── java/
+│               └── com/
+│                   └── ecommerce/
+│                       ├── dao/
+│                       │   ├── OrderDAO.java
+│                       │   ├── ProductDAO.java
+│                       │   └── UserDAO.java
+│                       ├── model/
+│                       │   ├── ElectronicProduct.java
+│                       │   ├── Order.java
+│                       │   ├── Product.java
+│                       │   └── User.java
+│                       ├── service/
+│                       │   └── OrderService.java
+│                       ├── CheckUsers.java
+│                       ├── CreditCardPayment.java
+│                       ├── DatabaseConnection.java
+│                       ├── Main.java
+│                       └── PaymentProcessor.java
+│
+└── backend-java/
+    └── src/
+        └── main/
+            └── java/
+                └── com/
+                    └── ecommerce/
+                        ├── config/
+                        │   └── DatabaseConfig.java
+                        ├── dao/
+                        │   ├── CartDAO.java
+                        │   ├── OrderDAO.java
+                        │   ├── ProductDAO.java
+                        │   └── UserDAO.java
+                        ├── model/
+                        │   ├── CartItem.java
+                        │   ├── Order.java
+                        │   ├── Product.java
+                        │   └── User.java
+                        └── servlet/
+                            ├── AuthServlet.java
+                            ├── CartServlet.java
+                            ├── CorsFilter.java
+                            ├── OrderServlet.java
+                            └── ProductServlet.java
+```
