@@ -1,0 +1,23 @@
+# Exclude large HTML files to boost Java percentage
+shop.html linguist-vendored
+dashboard.html linguist-vendored
+sproduct.html linguist-vendored
+terms.html linguist-vendored
+about.html linguist-vendored
+blog.html linguist-vendored
+signup.html linguist-vendored
+contact.html linguist-vendored
+signin.html linguist-vendored
+cart.html linguist-vendored
+
+# Exclude other non-code assets
+*.css linguist-vendored
+*.sql linguist-vendored
+*.xml linguist-vendored
+*.json linguist-vendored
+*.md linguist-vendored
+
+# Keep index.html, checkout.html, and script.js visible
+index.html linguist-detectable
+checkout.html linguist-detectable
+script.js linguist-detectable

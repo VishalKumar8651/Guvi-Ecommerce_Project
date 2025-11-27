@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - E-commerce</title>
+    <link rel="icon" href="img/logo.ico" />
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <style>
+        .checkout-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            padding: 40px 80px;
+        }
+
+        .checkout-form {
+            width: 60%;
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .order-summary {
+            width: 35%;
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            height: fit-content;
+        }
+
+        .checkout-form h3,
+        .order-summary h3 {
+            margin-bottom: 20px;
+            color: #222;
+            font-size: 24px;
+            border-bottom: 1px solid #e1e1e1;
+            padding-bottom: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #444;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .form-group input:focus {
+            border-color: #088178;
+        }
+
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .order-item img {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+
+        .item-details {
+            flex: 1;
+        }
+
+        .item-details h5 {
+            font-size: 14px;
+            margin: 0;
+            color: #333;
+        }
+
+        .item-details p {
+            font-size: 12px;
+            margin: 0;
+            color: #666;
+        }
+
+        .order-total {
+            margin-top: 20px;
+            border-top: 2px solid #e1e1e1;
+            padding-top: 15px;
+        }
+
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .total-row.final {
+            font-size: 18px;
+            font-weight: 700;
+            color: #088178;
+        }
+
+        .payment-method {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f9f9f9;
+            border-radius: 5px;
+            border: 1px solid #eee;
+        }
+
+        .payment-option {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .payment-option input {
+            margin-right: 10px;
+        }
+
+        .place-order-btn {
+            width: 100%;
+            padding: 15px;
+            background-color: #088178;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-top: 20px;
+        }
+
+        .place-order-btn:hover {
+            background-color: #066e67;
+        }
+
+        @media (max-width: 799px) {
+            .checkout-container {
+                padding: 40px 20px;
+                flex-direction: column;
+            }
+
+            .checkout-form,
+            .order-summary {
+                width: 100%;
+                margin-bottom: 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <section id="header">
+        <a href="index.html"><img src="everylogo.png" width="200px" class="logo"></a>
+
+        <div>
+            <ul id="navbar">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li id="lg-bag"><a href="cart.html"><i class="fa-solid fa-bag-shopping"></i></a></li>
+                <li><a href="dashboard.html" id="profile-btn"><i class="fa-solid fa-user"></i> Profile</a></li>
+                <a href="#" id="close"><i class="fa-solid fa-xmark"></i></a>
+            </ul>
+        </div>
+        <div id="mobile">
+            <a href="cart.html" class="cart"><i class="fa-solid fa-bag-shopping"></i></a>
+            <i id="bar" class="fa-solid fa-bars"></i>
+        </div>
+    </section>
+
+    <section id="page-header" class="about-header">
+        <h2>#Checkout</h2>
+        <p>Complete your order</p>
+    </section>
+
+    <section class="checkout-container">
+        <div class="checkout-form">
+            <h3>Billing Details</h3>
+            <form id="checkout-form">
+                <div class="form-group">
+                    <label for="fullname">Full Name</label>
+                    <input type="text" id="fullname" required placeholder="Enter your full name">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" required placeholder="Enter your email">
+                </div>
+                <div class="form-group">
+                    <label for="address">Address</label>
+                    <input type="text" id="address" required placeholder="Street address">
+                </div>
+                <div class="form-group">
+                    <label for="city">City</label>
+                    <input type="text" id="city" required placeholder="City">
+                </div>
+                <div class="row" style="display: flex; gap: 20px;">
+                    <div class="form-group" style="flex: 1;">
+                        <label for="state">State</label>
+                        <input type="text" id="state" required placeholder="State">
+                    </div>
+                    <div class="form-group" style="flex: 1;">
+                        <label for="zip">Zip Code</label>
+                        <input type="text" id="zip" required placeholder="Zip Code">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" required placeholder="Phone Number">
+                </div>
+            </form>
+        </div>
+
+        <div class="order-summary">
+            <h3>Order Summary</h3>
+            <div id="checkout-items">
+                <!-- Items will be populated by JS -->
+                <p style="text-align: center; color: #666;">Loading items...</p>
+            </div>
+
+            <div class="order-total">
+                <div class="total-row">
+                    <span>Subtotal</span>
+                    <span id="checkout-subtotal">Rs. 0</span>
+                </div>
+                <div class="total-row">
+                    <span>Shipping</span>
+                    <span>Free</span>
+                </div>
+                <div class="total-row final">
+                    <span>Total</span>
+                    <span id="checkout-total">Rs. 0</span>
+                </div>
+            </div>
+
+            <div class="payment-method">
+                <h4>Payment Method</h4>
+                <div class="payment-option">
+                    <input type="radio" id="cod" name="payment" checked>
+                    <label for="cod">Cash on Delivery</label>
+                </div>
+                <p style="font-size: 12px; color: #666; margin-top: 5px;">Pay with cash upon delivery.</p>
+            </div>
+
+            <button class="place-order-btn" onclick="placeOrder()">Place Order</button>
+        </div>
+    </section>
+
+    <footer class="section-p1">
+        <div class="col">
+            <img class="logo" src="everylogo.png" width="200px">
+            <h4>Contact</h4>
+            <p><strong>Address: </strong>Plot No. 2, Sector 17A, Yamuna Expressway, Opposite Buddha International
+                Circuit, Greater Noida, Uttar Pradesh 203201</p>
+            <p><strong>Phone: </strong>+1 956 1235 378</p>
+            <p><strong>Hours: </strong> 10:00 - 18:00 Mon - Sat</p>
+            <div class="follow">
+                <h4>Follow us</h4>
+                <div class="icon">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-linux"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <h4>About</h4>
+            <a href="#">Privacy Policy</a>
+            <a href="terms.html">Terms & Condition</a>
+            <a href="#">Contact Us</a>
+        </div>
+
+        <div class="col install">
+            <h4>Install App</h4>
+            <p>From App Store or Google Play</p>
+            <div class="row">
+                <img src="img/pay/app.jpg">
+                <img src="img/pay/play.jpg">
+            </div>
+            <p>Secured Payment Gateways</p>
+            <img src="img/pay/pay.png">
+        </div>
+
+        <div class="copyright">
+            <p>&copy; 2024, Your E-commerce Store</p>
+        </div>
+    </footer>
+
+    <!-- Notification -->
+    <div id="notification" class="notification">
+        <i class="fa-solid fa-check-circle"></i>
+        <span>Action completed!</span>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            loadCheckoutItems();
+        });
+    </script>
+</body>
+
+</html>

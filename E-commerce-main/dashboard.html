@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard - E-commerce</title>
+    <link rel="icon" href="img/logo.ico" />
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        crossorigin="anonymous">
+</head>
+
+<body>
+    <section id="header">
+        <a href="index.html"><img src="everylogo.png" width="200px" class="logo"></a>
+
+        <div>
+            <ul id="navbar">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li id="lg-bag"><a href="cart.html"><i class="fa-solid fa-bag-shopping"></i></a></li>
+                <li><a href="dashboard.html" id="profile-btn"><i class="fa-solid fa-user"></i> Profile</a></li>
+                <a href="#" id="close"><i class="fa-solid fa-xmark"></i></a>
+            </ul>
+        </div>
+        <div id="mobile">
+            <a href="cart.html" class="cart"><i class="fa-solid fa-bag-shopping"></i></a>
+            <i id="bar" class="fa-solid fa-bars"></i>
+        </div>
+    </section>
+
+    <section id="dashboard" class="section-p1 dashboard-section">
+        <div class="container-fluid dashboard-container">
+            <div class="row">
+                <div class="col-lg-3 col-md-4">
+                    <div class="dashboard-sidebar">
+                        <div class="user-profile-summary">
+                            <div class="profile-img-container">
+                                <i class="fa-solid fa-user-circle"></i>
+                            </div>
+                            <h4 class="sidebar-title">My Dashboard</h4>
+                        </div>
+                        <ul class="nav flex-column sidebar-menu">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#overview" onclick="showSection('overview')">
+                                    <i class="fa-solid fa-tachometer-alt"></i> <span>Overview</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#orders" onclick="showSection('orders')">
+                                    <i class="fa-solid fa-shopping-bag"></i> <span>My Orders</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#cart" onclick="showSection('cart')">
+                                    <i class="fa-solid fa-shopping-cart"></i> <span>Cart Items</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#wishlist" onclick="showSection('wishlist')">
+                                    <i class="fa-solid fa-heart"></i> <span>Wishlist</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#reviews" onclick="showSection('reviews')">
+                                    <i class="fa-solid fa-star"></i> <span>Reviews</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#account" onclick="showSection('account')">
+                                    <i class="fa-solid fa-user-cog"></i> <span>Settings</span>
+                                </a>
+                            </li>
+                            <li class="nav-item mt-auto">
+                                <a class="nav-link sign-out-btn" href="#" onclick="signOut()">
+                                    <i class="fa-solid fa-sign-out-alt"></i> <span>Sign Out</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-9 col-md-8">
+                    <div class="dashboard-main-content">
+
+                        <!-- Overview Section -->
+                        <div id="overview-section" class="dashboard-content fade-in">
+                            <div class="welcome-banner">
+                                <h2>Welcome back, <span id="user-name">User</span>!</h2>
+                                <p>Here's what's happening with your store account today.</p>
+                            </div>
+
+                            <div class="dashboard-stats-row">
+                                <div class="stat-card">
+                                    <div class="icon-box purple">
+                                        <i class="fa-solid fa-shopping-bag"></i>
+                                    </div>
+                                    <div class="stat-info">
+                                        <h5>Total Orders</h5>
+                                        <p>0</p>
+                                    </div>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="icon-box blue">
+                                        <i class="fa-solid fa-shopping-cart"></i>
+                                    </div>
+                                    <div class="stat-info">
+                                        <h5>In Cart</h5>
+                                        <p id="cart-count-display">0</p>
+                                    </div>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="icon-box orange">
+                                        <i class="fa-solid fa-heart"></i>
+                                    </div>
+                                    <div class="stat-info">
+                                        <h5>Wishlist</h5>
+                                        <p>0</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="content-card mt-4">
+                                <div class="card-header">
+                                    <h4>Recent Activity</h4>
+                                </div>
+                                <div class="card-body">
+                                    <div id="recent-activity" class="empty-state">
+                                        <i class="fa-regular fa-clock"></i>
+                                        <p>No recent activity to show.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Orders Section -->
+                        <div id="orders-section" class="dashboard-content fade-in" style="display: none;">
+                            <div class="section-header">
+                                <h2>My Orders</h2>
+                                <p>Track and manage your recent orders.</p>
+                            </div>
+                            <div class="content-card">
+                                <div id="orders-list" class="empty-state-large">
+                                    <div class="icon-bg">
+                                        <i class="fa-solid fa-box-open"></i>
+                                    </div>
+                                    <h3>No orders yet</h3>
+                                    <p>Looks like you haven't placed any orders yet.</p>
+                                    <a href="shop.html" class="btn-primary-custom">Start Shopping</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Cart Section -->
+                        <div id="cart-section" class="dashboard-content fade-in" style="display: none;">
+                            <div class="section-header">
+                                <h2>Shopping Cart</h2>
+                                <p>Items you've added to your cart.</p>
+                            </div>
+                            <div class="content-card">
+                                <div id="cart-list" class="empty-state-large">
+                                    <div class="icon-bg">
+                                        <i class="fa-solid fa-cart-arrow-down"></i>
+                                    </div>
+                                    <h3>Your cart is empty</h3>
+                                    <p>Add items to your cart to see them here.</p>
+                                    <a href="shop.html" class="btn-primary-custom">Browse Products</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Wishlist Section -->
+                        <div id="wishlist-section" class="dashboard-content fade-in" style="display: none;">
+                            <div class="section-header">
+                                <h2>My Wishlist</h2>
+                                <p>Products you've saved for later.</p>
+                            </div>
+                            <div class="content-card">
+                                <div id="wishlist-list" class="empty-state-large">
+                                    <div class="icon-bg">
+                                        <i class="fa-solid fa-heart-crack"></i>
+                                    </div>
+                                    <h3>Wishlist is empty</h3>
+                                    <p>Save items you love to your wishlist.</p>
+                                    <a href="shop.html" class="btn-primary-custom">Explore Store</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Reviews Section -->
+                        <div id="reviews-section" class="dashboard-content fade-in" style="display: none;">
+                            <div class="section-header">
+                                <h2>My Reviews</h2>
+                                <p>Reviews you've written for products.</p>
+                            </div>
+                            <div class="content-card">
+                                <div id="reviews-list" class="empty-state-large">
+                                    <div class="icon-bg">
+                                        <i class="fa-solid fa-star-half-stroke"></i>
+                                    </div>
+                                    <h3>No reviews yet</h3>
+                                    <p>Share your thoughts on products you've purchased.</p>
+                                    <a href="shop.html" class="btn-primary-custom">Write a Review</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Account Section -->
+                        <div id="account-section" class="dashboard-content fade-in" style="display: none;">
+                            <div class="section-header">
+                                <h2>Account Settings</h2>
+                                <p>Manage your profile information and security.</p>
+                            </div>
+                            <div class="content-card">
+                                <form id="account-form" class="settings-form">
+                                    <div class="row">
+                                        <div class="col-md-6 mb-4">
+                                            <div class="form-group">
+                                                <label for="account-username">Display Name</label>
+                                                <div class="input-wrapper">
+                                                    <i class="fa-solid fa-user"></i>
+                                                    <input type="text" id="account-username" placeholder="Your Name">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 mb-4">
+                                            <div class="form-group">
+                                                <label for="account-email">Email Address</label>
+                                                <div class="input-wrapper">
+                                                    <i class="fa-solid fa-envelope"></i>
+                                                    <input type="email" id="account-email" readonly
+                                                        class="readonly-input">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 mb-4">
+                                            <div class="form-group">
+                                                <label for="account-password">New Password</label>
+                                                <div class="input-wrapper">
+                                                    <i class="fa-solid fa-lock"></i>
+                                                    <input type="password" id="account-password"
+                                                        placeholder="Leave blank to keep current">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn-primary-custom">Save Changes</button>
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Notification -->
+    <div id="notification" class="notification">
+        <i class="fa-solid fa-check-circle"></i>
+        <span>Action completed!</span>
+    </div>
+
+    <footer class="section-p1">
+        <div class="col">
+            <img class="logo" src="everylogo.png" width="200px">
+            <h4>Contact</h4>
+            <p><strong>Address: </strong>Plot No. 2, Sector 17A, Yamuna Expressway, Opposite Buddha International
+                Circuit, Greater Noida, Uttar Pradesh 203201</p>
+            <p><strong>Phone: </strong>+1 956 1235 378</p>
+            <p><strong>Hours: </strong> 10:00 - 18:00 Mon - Sat</p>
+            <div class="follow">
+                <h4>Follow us</h4>
+                <div class="icon">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-linux"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <h4>About</h4>
+            <a href="#">Privacy Policy</a>
+            <a href="terms.html">Terms & Condition</a>
+            <a href="#">Contact Us</a>
+        </div>
+
+        <div class="col install">
+            <h4>Install App</h4>
+            <p>From App Store or Google Play</p>
+            <div class="row">
+                <img src="img/pay/app.jpg">
+                <img src="img/pay/play.jpg">
+            </div>
+            <p>Secured Payment Gateways</p>
+            <img src="img/pay/pay.png">
+        </div>
+
+        <div class="copyright">
+            <p>&copy; 2024, Your E-commerce Store</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async function () {
+            // Check if user is logged in
+            const token = localStorage.getItem('token');
+            if (!token) {
+                window.location.href = 'signin.html';
+                return;
+            }
+
+            const API_URL = await getAvailableAPI();
+
+            try {
+                // Fetch user data from backend
+                const response = await fetch(`${API_URL}/auth/me`, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+
+                const data = await response.json();
+                if (!data.success) {
+                    localStorage.removeItem('token');
+                    window.location.href = 'signin.html';
+                    return;
+                }
+
+                const user = data.user;
+
+                // Populate user data
+                document.getElementById('user-name').textContent = user.name;
+                document.getElementById('account-username').value = user.name;
+                document.getElementById('account-email').value = user.email;
+            } catch (error) {
+                console.error('Error fetching user data:', error);
+                localStorage.removeItem('token');
+                window.location.href = 'signin.html';
+                return;
+            }
+
+            // Update cart count and recent activity
+            try {
+                const cartResponse = await fetch(`${API_URL}/cart`, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                const cartData = await cartResponse.json();
+                if (cartData.success) {
+                    const items = cartData.cart.items || [];
+                    if (items.length > 0) {
+                        const activityHtml = items.map(item => `
+                            <div class="activity-item">
+                                <img src="${item.product.image}" alt="${item.product.name}" style="width: 50px; height: 50px; object-fit: cover;">
+                                <div>
+                                    <strong>${item.product.name}</strong>
+                                    <p>Quantity: ${item.quantity}</p>
+                                </div>
+                            </div>
+                        `).join('');
+                        document.getElementById('recent-activity').innerHTML = activityHtml;
+
+                        // Populate cart section
+                        const cartListHtml = items.map(item => `
+                            <div class="cart-item" style="display: flex; align-items: center; padding: 15px 0; border-bottom: 1px solid #eee;">
+                                <img src="${item.product.image}" alt="${item.product.name}" style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px; margin-right: 20px;">
+                                <div style="flex: 1;">
+                                    <h5 style="margin: 0; color: #333;">${item.product.name}</h5>
+                                    <p style="margin: 5px 0; color: #666;">Quantity: ${item.quantity}</p>
+                                    <p style="margin: 0; color: #088178; font-weight: 600;">Rs. ${item.product.price * item.quantity}</p>
+                                </div>
+                                <a href="cart.html" style="color: #667eea; text-decoration: none; font-weight: 600;">View Cart</a>
+                            </div>
+                        `).join('');
+                        document.getElementById('cart-list').innerHTML = cartListHtml;
+                    } else {
+                        document.getElementById('cart-list').innerHTML = `
+                            <i class="fa-solid fa-shopping-cart" style="font-size: 64px; color: #667eea; margin-bottom: 20px;"></i>
+                            <p style="color: #666; font-size: 18px; font-weight: 500;">Your cart is empty.</p>
+                            <a href="shop.html" style="display: inline-block; margin-top: 20px; padding: 12px 24px; background: linear-gradient(135deg, #667eea, #764ba2); color: white; text-decoration: none; border-radius: 25px; font-weight: 600; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">Start Shopping</a>
+                        `;
+                    }
+                }
+            } catch (error) {
+                console.error('Error fetching cart:', error);
+            }
+
+            // Handle account form submission
+            document.getElementById('account-form').addEventListener('submit', async function (e) {
+                e.preventDefault();
+                const name = document.getElementById('account-username').value;
+                const password = document.getElementById('account-password').value;
+
+                if (password) {
+                    showNotification('Password change not implemented yet');
+                    return;
+                }
+
+                if (name !== user.name) {
+                    try {
+                        const response = await fetch(`${API_URL}/auth/update`, {
+                            method: 'PUT',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Authorization': `Bearer ${token}`
+                            },
+                            body: JSON.stringify({ name })
+                        });
+
+                        const data = await response.json();
+                        if (data.success) {
+                            showNotification('Account updated successfully!');
+                            document.getElementById('user-name').textContent = name;
+                            user.name = name; // Update local user object
+                        } else {
+                            showNotification('Failed to update account');
+                        }
+                    } catch (error) {
+                        console.error('Error updating account:', error);
+                        showNotification('Error updating account');
+                    }
+                } else {
+                    showNotification('No changes to update');
+                }
+            });
+        });
+
+        function showSection(sectionName) {
+            // Hide all sections
+            document.querySelectorAll('.dashboard-content').forEach(section => {
+                section.style.display = 'none';
+            });
+            // Show selected section
+            document.getElementById(sectionName + '-section').style.display = 'block';
+            // Update active nav link
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+
+            // Handle click on child elements
+            let target = event.target;
+            if (!target.classList.contains('nav-link')) {
+                target = target.closest('.nav-link');
+            }
+            if (target) {
+                target.classList.add('active');
+            }
+        }
+
+        function signOut() {
+            if (confirm('Are you sure you want to sign out?')) {
+                localStorage.removeItem('token');
+                window.location.href = 'index.html';
+            }
+        }
+    </script>
+</body>
+
+</html>
